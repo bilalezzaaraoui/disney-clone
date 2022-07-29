@@ -26,6 +26,7 @@ const Header = (props) => {
         navigate("/home");
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
 
   const handleAuth = () => {
