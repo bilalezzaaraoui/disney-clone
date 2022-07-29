@@ -7,7 +7,7 @@ const Trending = (props) => {
 
   return (
     <Container>
-      <h4>Trending</h4>
+      <h3>Trending</h3>
       <Content>
         {movies &&
           movies.map((movie, index) => {
@@ -28,7 +28,7 @@ const Trending = (props) => {
 const Container = styled.div`
   padding: 0 0 26px;
 
-  h4 {
+  h3 {
     padding-left: 3px;
   }
 `;

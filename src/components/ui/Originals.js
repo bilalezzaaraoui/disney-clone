@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 
 const Originals = (props) => {
   const movies = useSelector((state) => state.movie.original);
-  console.log(movies);
+
   return (
     <Container>
-      <h4>Originals</h4>
+      <h3>Originals</h3>
       <Content>
         {movies &&
           movies.map((movie, index) => {
@@ -28,7 +28,7 @@ const Originals = (props) => {
 const Container = styled.div`
   padding: 0 0 26px;
 
-  h4 {
+  h3 {
     padding-left: 3px;
   }
 `;

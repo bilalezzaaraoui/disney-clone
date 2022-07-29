@@ -6,7 +6,7 @@ const Recommends = (props) => {
   const movies = useSelector((state) => state.movie.recommended);
   return (
     <Container>
-      <h4>Recommended for You</h4>
+      <h3>Recommended for You</h3>
       <Content>
         {movies &&
           movies.map((movie, index) => {
@@ -27,7 +27,7 @@ const Recommends = (props) => {
 const Container = styled.div`
   padding: 0 0 26px;
 
-  h4 {
+  h3 {
     padding-left: 3px;
   }
 `;

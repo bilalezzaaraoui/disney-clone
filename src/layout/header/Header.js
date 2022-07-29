@@ -12,6 +12,7 @@ import { auth, provider } from "../../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userActions } from "../../store/userSlice/userSlice";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -69,10 +70,10 @@ const Header = (props) => {
               <img src={HomeIcon} alt="Home" />
               <span>Home</span>
             </a>
-            <a>
+            <Link to="/search">
               <img src={SearchIcon} alt="Home" />
               <span>Search</span>
-            </a>
+            </Link>
             <a>
               <img src={WatchlistIcon} alt="Home" />
               <span>Watchlist</span>

@@ -2,14 +2,14 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const NewDisney = (props) => {
-  const movies = useSelector((state) => state.movie.newDisney);
+const AllMovies = (props) => {
+  // const movies = useSelector((state) => state.movie.allMovies);
   return (
     <Container>
-      <h3>New to Disney</h3>
+      <h3>Explore</h3>
       <Content>
-        {movies &&
-          movies.map((movie, index) => {
+        {props.movies.length >= 1 ? (
+          props.movies.map((movie, index) => {
             return (
               <Wrap key={index}>
                 {movie.id}
@@ -18,7 +18,10 @@ const NewDisney = (props) => {
                 </Link>
               </Wrap>
             );
-          })}
+          })
+        ) : (
+          <p>Aucun film</p>
+        )}
       </Content>
     </Container>
   );
@@ -76,4 +79,4 @@ const Wrap = styled.div`
   }
 `;
 
-export default NewDisney;
+export default AllMovies;

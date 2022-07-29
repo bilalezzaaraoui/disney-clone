@@ -18,6 +18,7 @@ import Viewers from "../../components/ui/Viewers";
 const Home = (props) => {
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.user.name);
+  const allMovies = useSelector((state) => state.movie.allMovies);
   // const newRecommend = useSelector((state) => state.movie.recommended);
   // const newNewDisney = useSelector((state) => state.movie.newDisney);
   // const newOriginals = useSelector((state) => state.movie.originals);
@@ -27,44 +28,43 @@ const Home = (props) => {
   let originals = [];
   let trending = [];
 
-  // console.log(newRecommend);
-  // console.log(newNewDisney);
-  // console.log(newOriginals);
-  // console.log(newTrending);
-
   useEffect(() => {
-    db.collection("movies").onSnapshot((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        // console.log(recommended);
-        switch (doc.data().type) {
-          case "recommend":
-            recommended = [...recommended, { id: doc.id, ...doc.data() }];
-            // recommended.push({ id: doc.id, ...doc.data() });
-            break;
-          case "new":
-            arrDisney = [...arrDisney, { id: doc.id, ...doc.data() }];
-            // arrDisney.push({ id: doc.id, ...doc.data() });
-            break;
-          case "original":
-            originals = [...originals, { id: doc.id, ...doc.data() }];
-            // originals.push({ id: doc.id, ...doc.data() });
-            break;
-          case "trending":
-            trending = [...trending, { id: doc.id, ...doc.data() }];
-            // trending.push({ id: doc.id, ...doc.data() });
-            break;
-        }
-      });
+    if (allMovies.length === 0) {
+      db.collection("movies").onSnapshot((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          // console.log(recommended);
+          switch (doc.data().type) {
+            case "recommend":
+              recommended = [...recommended, { id: doc.id, ...doc.data() }];
+              // recommended.push({ id: doc.id, ...doc.data() });
+              break;
+            case "new":
+              arrDisney = [...arrDisney, { id: doc.id, ...doc.data() }];
+              // arrDisney.push({ id: doc.id, ...doc.data() });
+              break;
+            case "original":
+              originals = [...originals, { id: doc.id, ...doc.data() }];
+              // originals.push({ id: doc.id, ...doc.data() });
+              break;
+            case "trending":
+              trending = [...trending, { id: doc.id, ...doc.data() }];
+              // trending.push({ id: doc.id, ...doc.data() });
+              break;
+          }
+        });
 
-      dispatch(
-        movieAction.setMovies({
-          recommended: recommended,
-          newDisney: arrDisney,
-          original: originals,
-          trending: trending,
-        })
-      );
-    });
+        dispatch(
+          movieAction.setMovies({
+            recommended: recommended,
+            newDisney: arrDisney,
+            original: originals,
+            trending: trending,
+          })
+        );
+
+        dispatch(movieAction.setAllMovies());
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userName]);
 
