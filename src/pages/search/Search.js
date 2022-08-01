@@ -10,24 +10,26 @@ const Search = (props) => {
   const [showBtn, setShowBtn] = useState(false);
   const [movies, setMovies] = useState(originalMovies);
 
-  console.log(movies);
+  console.log(originalMovies);
+  // console.log(movies);
 
   useEffect(() => {
     if (inputValue.length >= 1) {
       const filteredMovies = originalMovies
         .map((item) => item)
-        .find((item) => {
+        .filter((item) => {
           if (item.title.toLowerCase().startsWith(inputValue.toLowerCase())) {
             return item;
           }
         });
-      console.log(filteredMovies);
-      setMovies([filteredMovies]);
+
+      setMovies(filteredMovies);
       setShowBtn(true);
     } else if (inputValue.length === 0) {
       setShowBtn(false);
       setMovies(originalMovies);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
   const inputHandler = () => {
@@ -67,6 +69,10 @@ const Container = styled.div`
   /* overflow-x: hidden; */
   display: block;
   top: 10px;
+
+  @media (max-width: 768px) {
+    top: 120px;
+  }
 `;
 
 const InputLayout = styled.div`
@@ -89,7 +95,7 @@ const InputLayout = styled.div`
       font-size: 44px;
       font-weight: 700;
       color: white;
-      padding-left: calc(3.5vw + 24px);
+      padding-left: calc(3.5vw + 5px);
       letter-spacing: 0.2px;
       line-height: 1.2;
       height: 60px;
@@ -112,6 +118,16 @@ const InputLayout = styled.div`
       }
     }
   }
+
+  @media (max-width: 768px) {
+    padding: 0;
+
+    form {
+      input {
+        font-size: 1rem;
+      }
+    }
+  }
 `;
 
 const LittleContainer = styled.div`
@@ -122,6 +138,10 @@ const LittleContainer = styled.div`
   top: 120px;
   padding: 0 calc(3.5vw + 5px);
   margin-top: 3.5rem;
+
+  @media (max-width: 768px) {
+    margin-top: -3rem;
+  }
 `;
 
 export default Search;

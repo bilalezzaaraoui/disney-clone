@@ -1,28 +1,29 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Fragment } from "react";
 
 const AllMovies = (props) => {
-  // const movies = useSelector((state) => state.movie.allMovies);
   return (
     <Container>
-      <h3>Explore</h3>
-      <Content>
-        {props.movies.length >= 1 ? (
-          props.movies.map((movie, index) => {
-            return (
-              <Wrap key={index}>
-                {movie.id}
-                <Link to={`/detail/${movie.id}`}>
-                  <img src={movie.cardImg} alt={movie.title} />
-                </Link>
-              </Wrap>
-            );
-          })
-        ) : (
-          <p>Aucun film</p>
-        )}
-      </Content>
+      {props.movies.length >= 1 ? (
+        <Fragment>
+          <h3>Explore</h3>
+          <Content>
+            {props.movies.map((movie, index) => {
+              return (
+                <Wrap key={index}>
+                  {movie.id}
+                  <Link to={`/detail/${movie.id}`}>
+                    <img src={movie.cardImg} alt={movie.title} />
+                  </Link>
+                </Wrap>
+              );
+            })}{" "}
+          </Content>
+        </Fragment>
+      ) : (
+        <div className="error-message">Aucun film trouvé</div>
+      )}
     </Container>
   );
 };

@@ -17,13 +17,12 @@ const movieSlice = createSlice({
       state.newDisney = action.payload.newDisney;
       state.original = action.payload.original;
       state.trending = action.payload.trending;
-    },
-    setAllMovies: (state) => {
-      state.allMovies = state.recommended.concat(
-        state.newDisney,
-        state.original,
-        state.trending
-      );
+      state.allMovies = [
+        ...action.payload.recommended,
+        ...action.payload.newDisney,
+        ...action.payload.original,
+        ...action.payload.trending,
+      ];
     },
   },
 });

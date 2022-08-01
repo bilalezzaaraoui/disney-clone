@@ -10,13 +10,12 @@ import SeriesIcon from "../../asset/images/series-icon.svg";
 import WatchlistIcon from "../../asset/images/watchlist-icon.svg";
 import { auth, provider } from "../../firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { userActions } from "../../store/userSlice/userSlice";
 import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const isConnected = useSelector((state) => state.user.login);
   const username = useSelector((state) => state.user.name);
   const userPhoto = useSelector((state) => state.user.photo);
 
@@ -24,7 +23,6 @@ const Header = (props) => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-        navigate("/home");
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,7 +39,6 @@ const Header = (props) => {
     } else if (username) {
       auth.signOut().then(() => {
         dispatch(userActions.setSignOutState());
-        navigate("/");
       });
     }
   };
@@ -66,10 +63,10 @@ const Header = (props) => {
       ) : (
         <Fragment>
           <NavMenu>
-            <a href="/home">
+            <Link to="/home">
               <img src={HomeIcon} alt="Home" />
               <span>Home</span>
-            </a>
+            </Link>
             <Link to="/search">
               <img src={SearchIcon} alt="Home" />
               <span>Search</span>
@@ -115,7 +112,7 @@ const Nav = styled.nav`
   align-items: center;
   padding: 0 36px;
   letter-spacing: 16px;
-  z-index: 3;
+  z-index: 300;
 `;
 
 const Logo = styled.a`
@@ -242,6 +239,7 @@ const SignOut = styled.div`
   cursor: pointer;
   align-items: center;
   justify-content: center;
+  z-index: 200;
 
   ${UserImg} {
     border-radius: 50%;
