@@ -1,14 +1,18 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import db from "../../firebase";
 import PlayBlack from "../../asset/images/play-icon-black.png";
 import PlayWhite from "../../asset/images/play-icon-white.png";
 import GroupIcon from "../../asset/images/group-icon.png";
+import ModalVideo from "../../components/ui/ModalVideo";
 
 const Detail = (props) => {
   const { id } = useParams();
   const [detailData, setDetailData] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  console.log(showModal);
 
   useEffect(() => {
     db.collection("movies")
@@ -27,38 +31,48 @@ const Detail = (props) => {
   }, [id]);
 
   return (
-    <Container>
-      <Background>
-        <img src={detailData.backgroundImg} alt={detailData.title} />
-      </Background>
+    <Fragment>
+      <Container>
+        <Background>
+          <img src={detailData.backgroundImg} alt={detailData.title} />
+        </Background>
 
-      <ImageTitle>
-        <img src={detailData.titleImg} alt={detailData.title} />
-      </ImageTitle>
-      <ContentMeta>
-        <Controls>
-          <Player>
-            <img src={PlayBlack} alt="" />
-            <span>Play</span>
-          </Player>
-          <Trailer>
-            <img src={PlayWhite} alt="" />
-            <span>Trailer</span>
-          </Trailer>
-          <AddList>
-            <span />
-            <span />
-          </AddList>
-          <GroupWatch>
-            <div>
-              <img src={GroupIcon} alt="" />
-            </div>
-          </GroupWatch>
-        </Controls>
-        <SubTitle>{detailData.subTitle}</SubTitle>
-        <Description>{detailData.description}</Description>
-      </ContentMeta>
-    </Container>
+        <ImageTitle>
+          <img src={detailData.titleImg} alt={detailData.title} />
+        </ImageTitle>
+        <ContentMeta>
+          <Controls>
+            <Player onClick={() => setShowModal(true)}>
+              <img src={PlayBlack} alt="" />
+              <span>Play</span>
+            </Player>
+            <Trailer onClick={() => setShowModal(true)}>
+              <img src={PlayWhite} alt="" />
+              <span>Trailer</span>
+            </Trailer>
+            <AddList>
+              <span />
+              <span />
+            </AddList>
+            <GroupWatch>
+              <div>
+                <img src={GroupIcon} alt="" />
+              </div>
+            </GroupWatch>
+          </Controls>
+          <SubTitle>{detailData.subTitle}</SubTitle>
+          <Description>{detailData.description}</Description>
+        </ContentMeta>
+      </Container>
+      {showModal &&
+        ReactDOM.createPortal(
+          <ModalVideo
+            closeModal={setShowModal}
+            youtubeUrl={detailData.youtubeUrl}
+          />,
+          document.getElementById("modal-video")
+        )}
+    </Fragment>
   );
 };
 
