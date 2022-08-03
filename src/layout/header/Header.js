@@ -455,6 +455,11 @@ const DropDown = styled.div`
 
   a {
     margin-bottom: 0.6rem;
+    display: none;
+
+    @media (max-width: 768px) {
+      display: inline-block;
+    }
   }
 `;
 

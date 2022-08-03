@@ -75,7 +75,8 @@ const Container = styled.div`
 `;
 
 const InputLayout = styled.div`
-  position: fixed;
+  position: relative;
+  top: 70px;
   width: 100vw;
   background-color: rgb(75, 78, 90);
   padding-top: 1rem;
@@ -138,11 +139,9 @@ const LittleContainer = styled.div`
   display: block;
   top: 120px;
   padding: 0 calc(3.5vw + 5px);
-  margin-top: 3.5rem;
 
   @media (max-width: 768px) {
-    margin-top: -3rem;
-    top: 150px;
+    margin-top: -1.5rem;
   }
 `;
 
