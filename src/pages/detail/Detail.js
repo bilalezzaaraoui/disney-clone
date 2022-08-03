@@ -4,9 +4,9 @@ import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import db from "../../firebase";
 import PlayBlack from "../../asset/images/play-icon-black.png";
-import PlayWhite from "../../asset/images/play-icon-white.png";
 import GroupIcon from "../../asset/images/group-icon.png";
 import ModalVideo from "../../components/ui/ModalVideo";
+import { HiUserGroup } from "react-icons/hi";
 
 const Detail = (props) => {
   const { id } = useParams();
@@ -47,18 +47,20 @@ const Detail = (props) => {
               <span>Play</span>
             </Player>
             <Trailer onClick={() => setShowModal(true)}>
-              <img src={PlayWhite} alt="" />
+              {/* <img src={PlayWhite} alt="" /> */}
               <span>Trailer</span>
             </Trailer>
-            <AddList>
-              <span />
-              <span />
-            </AddList>
-            <GroupWatch>
-              <div>
-                <img src={GroupIcon} alt="" />
-              </div>
-            </GroupWatch>
+            <FlexButton>
+              <AddList>
+                <span />
+                <span />
+              </AddList>
+              <GroupWatch>
+                <div>
+                  <HiUserGroup />
+                </div>
+              </GroupWatch>
+            </FlexButton>
           </Controls>
           <SubTitle>{detailData.subTitle}</SubTitle>
           <Description>{detailData.description}</Description>
@@ -83,6 +85,10 @@ const Container = styled.div`
   display: block;
   top: 72px;
   padding: 0 calc(3.5vw + 5px);
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const Background = styled.div`
@@ -97,9 +103,14 @@ const Background = styled.div`
     width: 100vw;
     height: 100vh;
 
+    /* box-shadow: 0 0 5px 10px #555; */
     @media (max-width: 768px) {
-      width: initial;
+      height: auto;
     }
+  }
+
+  @media (max-width: 768px) {
+    position: static;
   }
 `;
 
@@ -109,15 +120,21 @@ const ImageTitle = styled.div`
   -webkit-box-pack: start;
   justify-content: flex-start;
   margin: 0px auto;
-  height: 30vw;
+  /* height: 30vw; */
   min-height: 170px;
-  padding-bottom: 24px;
+  padding: 24px 0;
   width: 100%;
 
   img {
     max-width: 600px;
     min-width: 200px;
     width: 35vw;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    position: relative;
+    top: -100px;
   }
 `;
 
@@ -131,6 +148,12 @@ const Controls = styled.div`
   flex-flow: row nowrap;
   margin: 24px 0px;
   min-height: 56px;
+
+  @media (max-width: 768px) {
+    margin: -100px 0px 0;
+    justify-content: center;
+    flex-direction: column;
+  }
 `;
 
 const Player = styled.button`
@@ -149,6 +172,7 @@ const Player = styled.button`
   background: rgb(249, 249, 249);
   border: none;
   color: rgb(0, 0, 0);
+  transition: 0.3s;
 
   img {
     width: 32px;
@@ -159,13 +183,19 @@ const Player = styled.button`
   }
 
   @media (max-width: 768px) {
+    width: 80%;
     height: 45px;
     padding: 0px 12px;
     font-size: 12px;
-    margin: 0px 10px 0px 0px;
+    margin: 0;
 
     img {
       width: 25px;
+    }
+
+    span {
+      font-size: 1rem;
+      font-weight: bold;
     }
   }
 `;
@@ -174,6 +204,17 @@ const Trailer = styled(Player)`
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgb(249, 249, 249);
   color: rgb(249, 249, 249);
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const FlexButton = styled.div`
+  display: flex;
+  @media (max-width: 768px) {
+    margin: 1rem 0;
+  }
 `;
 
 const AddList = styled.div`
@@ -187,21 +228,32 @@ const AddList = styled.div`
   border-radius: 50px;
   border: 2px solid white;
   cursor: pointer;
+  transition: 0.3s;
 
   span {
     background-color: rgb(249, 249, 249);
     display: inline-block;
 
     &:first-child {
-      height: 2px;
+      height: 3px;
       transform: translate(1px, 0px) rotate(0deg);
       width: 16px;
+      border-radius: 1px;
     }
 
     &:nth-child(2) {
       height: 16px;
       transform: translateX(-8px) rotate(0deg);
-      width: 2px;
+      width: 3px;
+      border-radius: 1px;
+    }
+  }
+
+  &:hover {
+    background-color: #fff;
+
+    span {
+      background-color: black;
     }
   }
 `;
@@ -215,15 +267,29 @@ const GroupWatch = styled.div`
   align-items: center;
   cursor: pointer;
   background: white;
+  transition: 0.3s;
 
   div {
     height: 40px;
     width: 40px;
     background: rgb(0, 0, 0);
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    img {
-      width: 100%;
+    svg {
+      font-size: 1.5rem;
+    }
+  }
+
+  &:hover {
+    div {
+      background-color: #fff;
+
+      svg {
+        color: black;
+      }
     }
   }
 `;
@@ -234,7 +300,8 @@ const SubTitle = styled.div`
   min-height: 20px;
 
   @media (max-width: 768px) {
-    font-size: 12px;
+    width: 90%;
+    margin: 0.5rem auto 0;
   }
 `;
 
@@ -245,7 +312,9 @@ const Description = styled.div`
   color: rgb(249, 249, 249);
 
   @media (max-width: 768px) {
-    font-size: 14px;
+    font-size: 15px;
+    width: 90%;
+    margin: 0.5rem auto 0;
   }
 `;
 
