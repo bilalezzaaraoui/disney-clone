@@ -95,6 +95,9 @@ const Header = (props) => {
     };
   }
 
+  console.log(dimension);
+  console.log(bg);
+
   useEffect(() => {
     function handleResize() {
       setDimension(getWindowDimensions());
@@ -193,6 +196,7 @@ const Header = (props) => {
 const NavNew = styled.nav`
   width: 100%;
   position: fixed;
+  top: 0;
   height: 70px;
   display: flex;
   justify-content: space-between;

@@ -4,8 +4,14 @@
     transparent,
     rgb(26, 29, 41)
   );
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   min-height: 100vh;
+  scroll-behavior: smooth;
+}
+@media (max-width: 768px) {
+  #root {
+    min-height: calc(100vh - 100px);
+  }
 }
 
 .App {

@@ -79,10 +79,10 @@ const Detail = (props) => {
 
 const Container = styled.div`
   position: relative;
-  min-height: calc(100vh - 250px);
+  /* min-height: calc(100vh - 250px); */
   overflow-x: hidden;
   display: block;
-  top: 72px;
+  margin-top: 72px;
   padding: 0 calc(3.5vw + 5px);
 
   @media (max-width: 768px) {
@@ -131,12 +131,16 @@ const ImageTitle = styled.div`
   @media (max-width: 768px) {
     justify-content: center;
     position: relative;
-    top: -100px;
+    /* top: -100px; */
+    margin-top: -100px;
   }
 `;
 
 const ContentMeta = styled.div`
   max-width: 874px;
+
+  @media (max-width: 768px) {
+  }
 `;
 
 const Controls = styled.div`
@@ -147,7 +151,8 @@ const Controls = styled.div`
   min-height: 56px;
 
   @media (max-width: 768px) {
-    margin: -100px 0px 0;
+    /* margin: -100px 0px 0; */
+    margin: 0;
     justify-content: center;
     flex-direction: column;
   }
