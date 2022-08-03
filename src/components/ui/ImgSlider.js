@@ -3,10 +3,18 @@ import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { useState, useEffect } from "react";
+// Desktop image
 import ImgBadging from "../../asset/images/slider-badging.jpg";
 import ImgScale from "../../asset/images/slider-scale.jpg";
 import ImgBadag from "../../asset/images/slider-badag.jpg";
 import ImgScales from "../../asset/images/slider-scales.jpg";
+
+// Mobile Image
+import Malcolm from "../../asset/images/sliderMobile/Malcolm.jpeg";
+import Ghost from "../../asset/images/sliderMobile/Gost.jpeg";
+import Lone from "../../asset/images/sliderMobile/Lone.jpeg";
+import Desperate from "../../asset/images/sliderMobile/Desperate.jpeg";
 
 const ImgSlider = (props) => {
   let settings = {
@@ -17,11 +25,36 @@ const ImgSlider = (props) => {
     slidesToScroll: 1,
     autoplay: true,
   };
-  const images = [ImgBadging, ImgScale, ImgBadag, ImgScales];
+
+  const [dimension, setDimension] = useState(getWindowDimensions());
+  const [data, setData] = useState([]);
+
+  function getWindowDimensions() {
+    const { innerWidth: width } = window;
+    return {
+      width,
+    };
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      setDimension(getWindowDimensions());
+    }
+
+    if (dimension.width <= 768) {
+      setData([Malcolm, Desperate, Lone, Ghost]);
+    } else if (dimension.width >= 769) {
+      setData([ImgBadging, ImgScale, ImgBadag, ImgScales]);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [dimension.width]);
+
   return (
     <div>
       <Carousel {...settings}>
-        {images.map((item, key) => (
+        {data.map((item, key) => (
           <Wrap key={key}>
             <a>
               <img src={item} alt="" />

@@ -19,8 +19,6 @@ import Login from "../login/Login";
 const Home = (props) => {
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.user.name);
-  const loginState = useSelector((state) => state.user.login);
-  const allMovies = useSelector((state) => state.movie.allMovies);
 
   let recommended = [];
   let arrDisney = [];
@@ -54,8 +52,6 @@ const Home = (props) => {
         })
       );
     });
-
-    console.log("i fire once");
   }, [userName]);
 
   return (
@@ -72,11 +68,8 @@ const Home = (props) => {
 
 const Container = styled.main`
   position: relative;
-  /* min-height: calc(100vh- 250px); */
   overflow-x: hidden;
   display: block;
-  /* top: 72px; */
-  /* padding-top: 72px; */
   padding: 0 calc(3.5vw + 5px);
 
   &:after {

@@ -10,9 +10,6 @@ const Search = (props) => {
   const [showBtn, setShowBtn] = useState(false);
   const [movies, setMovies] = useState(originalMovies);
 
-  console.log(originalMovies);
-  // console.log(movies);
-
   useEffect(() => {
     if (inputValue.length >= 1) {
       const filteredMovies = originalMovies
@@ -66,7 +63,6 @@ const Search = (props) => {
 const Container = styled.div`
   position: relative;
   min-height: calc(100vh - 250px);
-  /* overflow-x: hidden; */
   display: block;
   top: 10px;
 

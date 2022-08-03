@@ -4,7 +4,6 @@ import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import db from "../../firebase";
 import PlayBlack from "../../asset/images/play-icon-black.png";
-import GroupIcon from "../../asset/images/group-icon.png";
 import ModalVideo from "../../components/ui/ModalVideo";
 import { HiUserGroup } from "react-icons/hi";
 
@@ -103,7 +102,6 @@ const Background = styled.div`
     width: 100vw;
     height: 100vh;
 
-    /* box-shadow: 0 0 5px 10px #555; */
     @media (max-width: 768px) {
       height: auto;
     }
@@ -120,7 +118,6 @@ const ImageTitle = styled.div`
   -webkit-box-pack: start;
   justify-content: flex-start;
   margin: 0px auto;
-  /* height: 30vw; */
   min-height: 170px;
   padding: 24px 0;
   width: 100%;
