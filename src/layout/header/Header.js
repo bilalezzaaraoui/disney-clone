@@ -65,7 +65,7 @@ const Header = (props) => {
         borderBottom: "1px solid #404040",
       },
       dropdown: {
-        opacity: "1",
+        display: "flex",
       },
     },
     hideDropdown: {
@@ -78,7 +78,7 @@ const Header = (props) => {
         borderBottom: "0px",
       },
       dropdown: {
-        opacity: "0",
+        display: "none",
       },
     },
   };
