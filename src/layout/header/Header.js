@@ -98,9 +98,9 @@ const Header = (props) => {
       setDimension(getWindowDimensions());
     }
 
-    if (dimension.scrollY <= 30) {
+    if (dimension.scrollY <= 5) {
       setBg(false);
-    } else if (dimension.scrollY >= 31) {
+    } else if (dimension.scrollY >= 6) {
       setBg(true);
     }
 
@@ -160,7 +160,7 @@ const Header = (props) => {
                   : dropdown.hideDropdown.userInfo
               }
             >
-              <UserName>{username.split(" ")[0]}</UserName>
+              <UserName>{username.split(" ")[0].toLowerCase()}</UserName>
               <ImgLayout>
                 <UserImg
                   onMouseEnter={() => setIsProfil(true)}
@@ -176,6 +176,9 @@ const Header = (props) => {
                   : dropdown.hideDropdown.dropdown
               }
             >
+              <Link to="search">
+                <span>Search</span>
+              </Link>
               <span onClick={handleAuth}>Sign out</span>
             </DropDown>
           </SignOut>
@@ -445,9 +448,14 @@ const DropDown = styled.div`
   width: 130px;
   text-align: center;
   opacity: 0; */
-
   padding: 10px 0;
   letter-spacing: normal;
+  display: flex;
+  flex-direction: column;
+
+  a {
+    margin-bottom: 0.6rem;
+  }
 `;
 
 const SignOut = styled.div`

@@ -71,7 +71,6 @@ const Container = styled.div`
   top: 10px;
 
   @media (max-width: 768px) {
-    top: 120px;
   }
 `;
 
@@ -121,6 +120,8 @@ const InputLayout = styled.div`
 
   @media (max-width: 768px) {
     padding: 0;
+    position: relative;
+    top: 70px;
 
     form {
       input {
@@ -141,6 +142,7 @@ const LittleContainer = styled.div`
 
   @media (max-width: 768px) {
     margin-top: -3rem;
+    top: 150px;
   }
 `;
 

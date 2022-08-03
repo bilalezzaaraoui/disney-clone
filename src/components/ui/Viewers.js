@@ -39,7 +39,7 @@ const Viewers = () => {
 };
 
 const Container = styled.div`
-  margin-top: 30px;
+  /* margin-top: 30px; */
   padding: 30px 0px 26px;
   display: grid;
   grid-gap: 15px;
