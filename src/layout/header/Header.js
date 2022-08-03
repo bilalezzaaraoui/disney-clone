@@ -197,7 +197,7 @@ const NavNew = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding-left: 20px;
   letter-spacing: 16px;
   z-index: 300;
 
@@ -281,6 +281,7 @@ const NavMenuNew = styled.div`
 const Login = styled.a`
   background-color: rgb(0, 0, 0, 0.6);
   padding: 8px 16px;
+  margin-right: 20px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   border: 1px solid #f9f9f9;
@@ -326,6 +327,7 @@ const SignOut = styled.div`
 
 const UserInfo = styled.div`
   height: 70px;
+  margin-right: 20px;
   display: flex;
   justify-content: flex-end;
   align-items: center;

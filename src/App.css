@@ -4,7 +4,8 @@
     transparent,
     rgb(26, 29, 41)
   );
-  height: 100vh;
+  /* overflow-x: hidden; */
+  min-height: 100vh;
 }
 
 .App {

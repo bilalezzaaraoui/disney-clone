@@ -34,6 +34,10 @@ const Container = styled.div`
   h3 {
     padding-left: 3px;
   }
+
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+  }
 `;
 
 const Content = styled.div`

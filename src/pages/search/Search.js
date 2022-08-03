@@ -129,12 +129,10 @@ const InputLayout = styled.div`
 `;
 
 const LittleContainer = styled.div`
-  position: relative;
   min-height: calc(100vh - 250px);
   overflow-x: hidden;
   display: block;
-  top: 120px;
-  padding: 0 calc(3.5vw + 5px);
+  padding: 120px calc(3.5vw + 5px) 0;
 
   @media (max-width: 768px) {
     margin-top: -1.5rem;
