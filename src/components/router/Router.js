@@ -27,6 +27,7 @@ const Router = () => {
         path="/detail/:id"
         element={isConnected ? <Detail /> : <Navigate replace to="/" />}
       />
+      <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
   );
 };

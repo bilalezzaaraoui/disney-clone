@@ -95,9 +95,6 @@ const Header = (props) => {
     };
   }
 
-  console.log(dimension);
-  console.log(bg);
-
   useEffect(() => {
     function handleResize() {
       setDimension(getWindowDimensions());

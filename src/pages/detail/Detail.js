@@ -11,7 +11,6 @@ const Detail = (props) => {
   const { id } = useParams();
   const [detailData, setDetailData] = useState({});
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
 
   useEffect(() => {
     db.collection("movies")
